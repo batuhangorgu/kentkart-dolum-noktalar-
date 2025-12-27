@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <title>İstanbulkart Dolum Noktaları</title>
 
-  <!-- Leaflet -->
+  <!-- Leaflet CSS -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
+
+  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
@@ -44,11 +46,14 @@
 
 <body>
 
-<!-- Geri Dön -->
-<a href="javascript:history.back()" class="back-btn">
+<!-- Geri Dön Butonu -->
+<a 
+  href="https://batuhangorgu.wordpress.com/2025/12/27/istanbul-kart-dolum-noktasi/" 
+  class="back-btn">
   ⬅ Geri Dön
 </a>
 
+<!-- Harita -->
 <div id="map"></div>
 
 <script>
@@ -60,7 +65,7 @@
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  // İstanbulkart dolum noktaları (örnek)
+  // İstanbulkart dolum noktaları (örnek noktalar)
   var dolumNoktalari = [
     { isim: "Eminönü İstanbulkart Dolum", lat: 41.0165, lng: 28.9707 },
     { isim: "Kadıköy İstanbulkart Dolum", lat: 40.9910, lng: 29.0287 },
@@ -69,6 +74,7 @@
     { isim: "Bakırköy İstanbulkart Dolum", lat: 40.9760, lng: 28.8726 }
   ];
 
+  // Marker ekleme + Google Maps yönlendirme
   dolumNoktalari.forEach(function(n) {
 
     var mapsLink =
@@ -77,12 +83,10 @@
 
     L.marker([n.lat, n.lng])
       .addTo(map)
-      .bindPopup(`
-        <b>${n.isim}</b><br><br>
-        <a href="${mapsLink}" target="_blank">
-          📍 Konuma Git
-        </a>
-      `);
+      .bindPopup(
+        "<b>" + n.isim + "</b><br><br>" +
+        "<a href='" + mapsLink + "' target='_blank'>📍 Konuma Git</a>"
+      );
   });
 </script>
 
