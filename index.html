@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Kentkart Dolum Noktaları</title>
+  <meta charset="UTF-8">
+  <title>İstanbul Kentkart Dolum Noktaları</title>
 
   <!-- Leaflet -->
   <link
@@ -14,7 +14,7 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif; 
+      font-family: Arial, sans-serif;
     }
     #map {
       width: 100vw;
@@ -28,25 +28,58 @@
 <div id="map"></div>
 
 <script>
-  // Harita merkezi (İzmir örnek)
-  var map = L.map('map').setView([38.4237, 27.1428], 13);
+  // İstanbul merkez
+  var map = L.map('map').setView([41.0082, 28.9784], 11);
 
   // Harita katmanı
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  // Kentkart dolum noktaları
+  // Dolum noktaları (örnek – yaygın noktalar)
   var dolumNoktalari = [
-    { isim: "Konak Kentkart Dolum", lat: 38.4192, lng: 27.1287 },
-    { isim: "Alsancak Kentkart Dolum", lat: 38.4324, lng: 27.1506 },
-    { isim: "Bornova Kentkart Dolum", lat: 38.4622, lng: 27.2246 }
+    {
+      isim: "Eminönü Kentkart Dolum Noktası",
+      lat: 41.0165,
+      lng: 28.9707
+    },
+    {
+      isim: "Kadıköy Kentkart Dolum Noktası",
+      lat: 40.9910,
+      lng: 29.0287
+    },
+    {
+      isim: "Üsküdar Kentkart Dolum Noktası",
+      lat: 41.0236,
+      lng: 29.0154
+    },
+    {
+      isim: "Beşiktaş Kentkart Dolum Noktası",
+      lat: 41.0430,
+      lng: 29.0044
+    },
+    {
+      isim: "Bakırköy Kentkart Dolum Noktası",
+      lat: 40.9760,
+      lng: 28.8726
+    }
   ];
 
+  // Marker ekleme + konum açma
   dolumNoktalari.forEach(function(n) {
+
+    var mapsLink = 
+      "https://www.google.com/maps/dir/?api=1&destination=" 
+      + n.lat + "," + n.lng;
+
     L.marker([n.lat, n.lng])
       .addTo(map)
-      .bindPopup("<b>" + n.isim + "</b>");
+      .bindPopup(`
+        <b>${n.isim}</b><br><br>
+        <a href="${mapsLink}" target="_blank">
+          📍 Konuma Git
+        </a>
+      `);
   });
 </script>
 
