@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>İstanbul Kentkart Dolum Noktaları</title>
+  <title>İstanbulkart Dolum Noktaları</title>
 
   <!-- Leaflet -->
   <link
@@ -16,14 +16,38 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
+
     #map {
       width: 100vw;
       height: 100vh;
+    }
+
+    /* Geri Dön Butonu */
+    .back-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+      background: #000;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-btn:hover {
+      background: #333;
     }
   </style>
 </head>
 
 <body>
+
+<!-- Geri Dön -->
+<a href="javascript:history.back()" class="back-btn">
+  ⬅ Geri Dön
+</a>
 
 <div id="map"></div>
 
@@ -36,41 +60,20 @@
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  // Dolum noktaları (örnek – yaygın noktalar)
+  // İstanbulkart dolum noktaları (örnek)
   var dolumNoktalari = [
-    {
-      isim: "Eminönü Kentkart Dolum Noktası",
-      lat: 41.0165,
-      lng: 28.9707
-    },
-    {
-      isim: "Kadıköy Kentkart Dolum Noktası",
-      lat: 40.9910,
-      lng: 29.0287
-    },
-    {
-      isim: "Üsküdar Kentkart Dolum Noktası",
-      lat: 41.0236,
-      lng: 29.0154
-    },
-    {
-      isim: "Beşiktaş Kentkart Dolum Noktası",
-      lat: 41.0430,
-      lng: 29.0044
-    },
-    {
-      isim: "Bakırköy Kentkart Dolum Noktası",
-      lat: 40.9760,
-      lng: 28.8726
-    }
+    { isim: "Eminönü İstanbulkart Dolum", lat: 41.0165, lng: 28.9707 },
+    { isim: "Kadıköy İstanbulkart Dolum", lat: 40.9910, lng: 29.0287 },
+    { isim: "Üsküdar İstanbulkart Dolum", lat: 41.0236, lng: 29.0154 },
+    { isim: "Beşiktaş İstanbulkart Dolum", lat: 41.0430, lng: 29.0044 },
+    { isim: "Bakırköy İstanbulkart Dolum", lat: 40.9760, lng: 28.8726 }
   ];
 
-  // Marker ekleme + konum açma
   dolumNoktalari.forEach(function(n) {
 
-    var mapsLink = 
-      "https://www.google.com/maps/dir/?api=1&destination=" 
-      + n.lat + "," + n.lng;
+    var mapsLink =
+      "https://www.google.com/maps/dir/?api=1&destination=" +
+      n.lat + "," + n.lng;
 
     L.marker([n.lat, n.lng])
       .addTo(map)
