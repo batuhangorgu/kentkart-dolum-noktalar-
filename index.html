@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kentkart Dolum Noktaları</title>
+
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #map {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script>
+  // Harita merkezi (İzmir örnek)
+  var map = L.map('map').setView([38.4237, 27.1428], 13);
+
+  // Harita katmanı
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  // Kentkart dolum noktaları
+  var dolumNoktalari = [
+    { isim: "Konak Kentkart Dolum", lat: 38.4192, lng: 27.1287 },
+    { isim: "Alsancak Kentkart Dolum", lat: 38.4324, lng: 27.1506 },
+    { isim: "Bornova Kentkart Dolum", lat: 38.4622, lng: 27.2246 }
+  ];
+
+  dolumNoktalari.forEach(function(n) {
+    L.marker([n.lat, n.lng])
+      .addTo(map)
+      .bindPopup("<b>" + n.isim + "</b>");
+  });
+</script>
+
+</body>
+</html>
